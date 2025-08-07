@@ -36,6 +36,7 @@ export async function fetchDoubanData<T>(url: string): Promise<T> {
     )}`;
     try {
       const fallbackResponse = await fetch(fallbackUrl, fetchOptions);
+      clearTimeout(timeoutId);
       if (!fallbackResponse.ok) {
         throw new Error(`HTTP error! Status: ${fallbackResponse.status}`);
       }
